@@ -21,9 +21,13 @@ const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
   <div className="BalanceChecker">
     <h3>Balance Checker</h3>
 
-    <p>Enter your card number to check it's balance.</p>
+    <p>Enter your card number to check its balance.</p>
 
-    <Input name={INPUT_NAMES.ccNumber} inputState={inputState} />
+    <Input
+      name={INPUT_NAMES.ccNumber}
+      placeholder="xxxx xxxx xxxx xxxx"
+      inputState={inputState}
+    />
 
     {/* Error message */}
     {!!inputState.errors[INPUT_NAMES.ccNumber] && (
@@ -31,6 +35,7 @@ const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
     )}
 
     {/* Balance */}
+    {/* todo format dollar with decimals */}
     {!!balance && <div>Your balance is ${balance}</div>}
 
     <div>

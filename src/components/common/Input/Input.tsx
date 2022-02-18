@@ -10,17 +10,24 @@ import "./Input.scss";
 
 interface IInputProps {
   name: string;
+  placeholder?: string;
   inputState: IUseInput;
   className?: string;
 }
 
-const Input: React.FC<IInputProps> = ({ name, inputState, className }) => {
+const Input: React.FC<IInputProps> = ({
+  name,
+  placeholder = "",
+  inputState,
+  className,
+}) => {
   const _classNames = classNames("Input", className);
 
   return (
     <div className={_classNames}>
       <input
         name={name}
+        placeholder={placeholder}
         value={inputState.values[name] || ""}
         onChange={inputState.onHandleChange}
       />

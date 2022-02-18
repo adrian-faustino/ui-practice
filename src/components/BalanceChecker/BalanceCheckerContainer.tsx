@@ -19,30 +19,29 @@ const BalanceCheckerContainer = () => {
     const inptName = INPUT_NAMES.ccNumber;
     const ccNum = values[inptName];
 
-    const setGenericErr = () => {
+    const onSetGenericErr = () =>
       inputState.onSetErrors(inptName, INPUT_ERROR_MESSAGES[inptName]);
-    };
 
     // check if 16 digit len requirement is met
     if (ccNum.length != VALID_CC_NUMBER_LENGTH) {
-      return setGenericErr();
+      return onSetGenericErr();
     }
 
     // check if int
     const isValidNum = isNumeric(ccNum);
     if (!isValidNum) {
-      return setGenericErr();
+      return onSetGenericErr();
     }
 
     // validation passed
     onCalculateBalance(ccNum);
   };
 
+  // if last num ends in 5 or 2 -> sum first 12 nums, else return 0
   const onCalculateBalance = (ccNum: string) => {
     const lastNum = ccNum.substring(ccNum.length - 1);
     let sum: number = 0;
 
-    // if last num ends in 5 or 2 -> sum first 12 nums
     const sumIf: string[] = ["5", "2"];
     if (sumIf.includes(lastNum)) {
       const first12digits: number[] = ccNum

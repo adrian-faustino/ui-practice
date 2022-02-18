@@ -7,20 +7,6 @@ const useInput = (): IUseInput => {
   const [values, setValues] = useState<IKeyStringValMap>({});
   const [errors, setErrors] = useState<IKeyStringValMap>({});
 
-  const onHandleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    e.persist();
-    const { name, value } = e.target;
-
-    setValues((state = {}) => ({
-      ...state,
-      [name]: value,
-    }));
-  };
-
   const onHandleClearValues = (name: string) => {
     return () => {
       setValues((state = {}) => ({
@@ -37,9 +23,30 @@ const useInput = (): IUseInput => {
     }));
   };
 
-  // const onHandleClearErrors = () => {
+  const onHandleClearErrors = (name: string) => {
+    return () => {
+      setErrors((state = {}) => ({
+        ...state,
+        [name]: "",
+      }));
+    };
+  };
 
-  // }
+  const onHandleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    e.persist();
+    const { name, value } = e.target;
+
+    onHandleClearErrors(name)();
+
+    setValues((state = {}) => ({
+      ...state,
+      [name]: value,
+    }));
+  };
 
   return {
     values,
@@ -47,6 +54,7 @@ const useInput = (): IUseInput => {
     onSetErrors,
     onHandleChange,
     onHandleClearValues,
+    onHandleClearErrors,
   };
 };
 

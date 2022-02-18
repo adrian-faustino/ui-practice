@@ -12,4 +12,5 @@ export interface IUseInput {
     >
   ) => any;
   onHandleClearValues: (name: string) => any;
+  onHandleClearErrors: (name: string) => any;
 }

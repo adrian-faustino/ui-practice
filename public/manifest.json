@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Balance Checker",
+  "name": "Balance Checker",
   "icons": [
     {
       "src": "favicon.ico",
