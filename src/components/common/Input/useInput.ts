@@ -5,6 +5,7 @@ import { IKeyStringValMap, IUseInput } from "types/global";
 
 const useInput = (): IUseInput => {
   const [values, setValues] = useState<IKeyStringValMap>({});
+  const [errors, setErrors] = useState<IKeyStringValMap>({});
 
   const onHandleChange = (
     e: React.ChangeEvent<
@@ -20,7 +21,7 @@ const useInput = (): IUseInput => {
     }));
   };
 
-  const onHandleClear = (name: string) => {
+  const onHandleClearValues = (name: string) => {
     return () => {
       setValues((state = {}) => ({
         ...state,
@@ -29,11 +30,23 @@ const useInput = (): IUseInput => {
     };
   };
 
+  const onSetErrors = (name: string, errMsg: string) => {
+    setErrors((state = {}) => ({
+      ...state,
+      [name]: errMsg,
+    }));
+  };
+
+  // const onHandleClearErrors = () => {
+
+  // }
+
   return {
     values,
-    setValues,
+    errors,
+    onSetErrors,
     onHandleChange,
-    onHandleClear,
+    onHandleClearValues,
   };
 };
 

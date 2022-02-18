@@ -8,11 +8,13 @@ import "./BalanceChecker.scss";
 /* This is a purely presentational component. All state, services, and handlers should be managed by the parent container */
 
 interface IBalanceCheckerProps {
+  balance: string;
   inputState: IUseInput;
   onHandleValidation: any; // todo any
 }
 
 const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
+  balance,
   inputState,
   onHandleValidation,
 }) => (
@@ -24,8 +26,12 @@ const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
     <Input name={INPUT_NAMES.ccNumber} inputState={inputState} />
 
     {/* Error message */}
-    <p>Your balance is XXX</p>
-    <p>Invalid number</p>
+    {!!inputState.errors[INPUT_NAMES.ccNumber] && (
+      <div>{inputState.errors[INPUT_NAMES.ccNumber]}</div>
+    )}
+
+    {/* Balance */}
+    {!!balance && <div>Your balance is ${balance}</div>}
 
     <div>
       <Button onClick={onHandleValidation}>Check</Button>

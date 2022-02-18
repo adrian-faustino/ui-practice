@@ -4,11 +4,12 @@ export interface IKeyStringValMap {
 
 export interface IUseInput {
   values: IKeyStringValMap;
-  setValues: any; // todo any
+  errors: IKeyStringValMap;
+  onSetErrors: (name: string, errMsg: string) => any;
   onHandleChange: (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
-  ) => void;
-  onHandleClear: any; // todo any
+  ) => any;
+  onHandleClearValues: (name: string) => any;
 }

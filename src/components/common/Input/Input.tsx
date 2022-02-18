@@ -25,7 +25,7 @@ const Input: React.FC<IInputProps> = ({ name, inputState, className }) => {
         onChange={inputState.onHandleChange}
       />
 
-      <Button onClick={inputState.onHandleClear(name)}>x</Button>
+      <Button onClick={inputState.onHandleClearValues(name)}>x</Button>
     </div>
   );
 };
