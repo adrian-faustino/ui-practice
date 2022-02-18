@@ -1,35 +1,36 @@
 import React from "react";
 import Button from "components/common/Button";
-import Input, { useInput, IUseInput } from "components/common/Input";
+import Input, { IUseInput } from "components/common/Input";
 import { INPUT_NAMES } from "./constants";
 
 import "./BalanceChecker.scss";
 
-const BalanceChecker = () => {
-  const inputState: IUseInput = useInput();
-  const { values = {} } = inputState;
+/* This is a purely presentational component. All state, services, and handlers should be managed by the parent container */
 
-  const onHandleValidation = () => {
-    console.log("@@@@ Validating:", values[INPUT_NAMES.ccNumber]);
-  };
+interface IBalanceCheckerProps {
+  inputState: IUseInput;
+  onHandleValidation: any; // todo any
+}
 
-  return (
-    <div className="BalanceChecker">
-      <h3>Balance Checker</h3>
+const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
+  inputState,
+  onHandleValidation,
+}) => (
+  <div className="BalanceChecker">
+    <h3>Balance Checker</h3>
 
-      <p>Enter your card number to check it's balance.</p>
+    <p>Enter your card number to check it's balance.</p>
 
-      <Input name={INPUT_NAMES.ccNumber} inputState={inputState} />
+    <Input name={INPUT_NAMES.ccNumber} inputState={inputState} />
 
-      {/* Error message */}
-      <p>Your balance is XXX</p>
-      <p>Invalid number</p>
+    {/* Error message */}
+    <p>Your balance is XXX</p>
+    <p>Invalid number</p>
 
-      <div>
-        <Button onClick={onHandleValidation}>Check</Button>
-      </div>
+    <div>
+      <Button onClick={onHandleValidation}>Check</Button>
     </div>
-  );
-};
+  </div>
+);
 
 export default BalanceChecker;

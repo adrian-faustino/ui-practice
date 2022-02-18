@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { IKeyStringValMap, IUseInput } from "types/global";
 
+/* This hook handles state manipulation of data related to input fields. Declare this in the parent component of where you intend to use the <Input.tsx> component */
+
 const useInput = (): IUseInput => {
   const [values, setValues] = useState<IKeyStringValMap>({});
 
