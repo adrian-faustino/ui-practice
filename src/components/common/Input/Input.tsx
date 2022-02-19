@@ -1,7 +1,8 @@
 import React from "react";
 import classNames from "classnames";
-// import { emptyFn } from "constants/global";
+// import { emptyFn } from "constants/global"; todo
 import Button from "components/common/Button";
+import CrossIcon from "icons/CrossIcon";
 import { IUseInput } from "types/global";
 
 import "./Input.scss";
@@ -26,13 +27,19 @@ const Input: React.FC<IInputProps> = ({
   return (
     <div className={_classNames}>
       <input
+        className="Input__field"
         name={name}
         placeholder={placeholder}
         value={inputState.values[name] || ""}
         onChange={inputState.onHandleChange}
       />
 
-      <Button onClick={inputState.onHandleClearValues(name)}>x</Button>
+      <Button
+        className="Input__clearButton"
+        onClick={inputState.onHandleClearValues(name)}
+      >
+        <CrossIcon />
+      </Button>
     </div>
   );
 };

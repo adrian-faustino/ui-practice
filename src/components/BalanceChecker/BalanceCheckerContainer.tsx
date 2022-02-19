@@ -23,7 +23,7 @@ const BalanceCheckerContainer = () => {
       inputState.onSetErrors(inptName, INPUT_ERROR_MESSAGES[inptName]);
 
     // check if 16 digit len requirement is met
-    if (ccNum.length != VALID_CC_NUMBER_LENGTH) {
+    if (ccNum.length !== VALID_CC_NUMBER_LENGTH) {
       return onSetGenericErr();
     }
 

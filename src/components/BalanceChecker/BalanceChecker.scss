@@ -1,3 +1,57 @@
 .BalanceChecker {
-  border: 1px solid grey;
+  background: #efe6dd; // todo store in constants
+  border: 1px solid #000000; // todo store in constants
+  border-radius: 10px;
+  padding: 0 15px;
+
+  max-width: 345px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__inputField {
+    position: relative;
+    left: -15px; // todo calc from parent constant padding
+
+    display: flex;
+    align-items: center;
+    width: calc(100% + 30px); // todo calc from parent constant padding
+
+    > input {
+      width: 100%;
+      height: 50px;
+      padding: 0 45px 0 15px;
+      font-size: 14px; // todo store in constants
+
+      border-top: 1px solid #000000; // todo store in constants
+      border-bottom: none; // todo store in constants
+      border-left: none;
+      border-right: none;
+      border-radius: 0 0 10px 10px;
+    }
+
+    &--hasErrors {
+      > input {
+        border-top: 1px solid #ff4d00; // todo store in constants
+        border-bottom: 1px solid #ff4d00; // todo store in constants
+        border-radius: 0;
+      }
+    }
+  }
+
+  &__errMsg,
+  &__balanceMsg {
+    width: max-content;
+    margin: 15px auto;
+  }
+
+  &__balanceMsg {
+    color: #1e7500; // todo store in constants
+  }
+
+  &__errMsg {
+    color: #ff4d00; // todo store in constants
+  }
 }

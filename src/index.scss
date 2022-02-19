@@ -1,3 +1,16 @@
-body {
-  /* todo normalize css */
+@import-normalize; /* bring in normalize.css styles */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", sans-serif;
+}
+
+p,
+span,
+div {
+  font-family: "Roboto Mono", monospace;
 }

@@ -14,3 +14,9 @@ export interface IUseInput {
   onHandleClearValues: (name: string) => any;
   onHandleClearErrors: (name: string) => any;
 }
+
+export interface ISvgIconProps {
+  width?: string;
+  height?: string;
+  className?: string;
+}

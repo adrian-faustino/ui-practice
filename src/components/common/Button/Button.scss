@@ -1,0 +1,7 @@
+.Button {
+  cursor: pointer;
+
+  &:active {
+    background: red; // todo user click feedback animation
+  }
+}

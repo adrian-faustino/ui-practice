@@ -1,0 +1,13 @@
+.Input {
+  &__field {
+    outline: none; // @NOTE: ask design for desired behavior when user is focusing input field
+  }
+
+  &__clearButton {
+    height: 100%;
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+}
