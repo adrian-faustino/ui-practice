@@ -4,9 +4,12 @@
   border: none;
   outline: none; // @NOTE: ask design for desired behavior when user is focusing input field
 
+  transition: all 0.5s;
+
   // User feedback when clicking button
   &:active {
-    background: red !important; // todo user click feedback animation
+    transform: scale(0.97);
+    filter: opacity(63%);
   }
 
   &--isFullWidth {

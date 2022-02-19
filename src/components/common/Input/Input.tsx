@@ -10,6 +10,7 @@ import "./Input.scss";
 /* This component handles recieving user input of data related to input fields. State should not be managed here and insetead should be managed by the <useInput.ts> hook in this' parent component */
 
 interface IInputProps {
+  isAutoCompleteOff?: boolean;
   name: string;
   placeholder?: string;
   inputState: IUseInput;
@@ -17,6 +18,7 @@ interface IInputProps {
 }
 
 const Input: React.FC<IInputProps> = ({
+  isAutoCompleteOff = false,
   name,
   placeholder = "",
   inputState,
@@ -27,6 +29,7 @@ const Input: React.FC<IInputProps> = ({
   return (
     <div className={_classNames}>
       <input
+        autoComplete={isAutoCompleteOff ? "off" : undefined}
         className="Input__field"
         name={name}
         placeholder={placeholder}

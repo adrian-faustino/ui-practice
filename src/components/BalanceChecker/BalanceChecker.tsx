@@ -38,6 +38,7 @@ const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
         <p>Enter your card number to check its balance.</p>
 
         <Input
+          isAutoCompleteOff
           className={inputFieldClassName}
           name={INPUT_NAMES.ccNumber}
           placeholder="xxxx xxxx xxxx xxxx"
