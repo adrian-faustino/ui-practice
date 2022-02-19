@@ -1,4 +1,4 @@
-Live site -> https://balancechecker.netlify.app/
+### Live site -> https://balancechecker.netlify.app/
 
 # Getting Started with Create React App
 
