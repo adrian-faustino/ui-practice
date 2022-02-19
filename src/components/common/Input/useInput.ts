@@ -7,8 +7,18 @@ const useInput = (): IUseInput => {
   const [values, setValues] = useState<IKeyStringValMap>({});
   const [errors, setErrors] = useState<IKeyStringValMap>({});
 
+  const onHandleClearErrors = (name: string) => {
+    return () => {
+      setErrors((state = {}) => ({
+        ...state,
+        [name]: "",
+      }));
+    };
+  };
+
   const onHandleClearValues = (name: string) => {
     return () => {
+      onHandleClearErrors(name)();
       setValues((state = {}) => ({
         ...state,
         [name]: "",
@@ -21,15 +31,6 @@ const useInput = (): IUseInput => {
       ...state,
       [name]: errMsg,
     }));
-  };
-
-  const onHandleClearErrors = (name: string) => {
-    return () => {
-      setErrors((state = {}) => ({
-        ...state,
-        [name]: "",
-      }));
-    };
   };
 
   const onHandleChange = (

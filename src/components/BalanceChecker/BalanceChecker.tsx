@@ -29,8 +29,8 @@ const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
   });
 
   return (
-    <>
-      <div className="BalanceChecker">
+    <div className="BalanceChecker">
+      <div className="BalanceChecker__card">
         <h2 className="BalanceChecker__header">
           Balance checker <DwellingIcon />
         </h2>
@@ -60,8 +60,14 @@ const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
         )}
       </div>
 
-      <Button onClick={onHandleValidation}>Check</Button>
-    </>
+      <Button
+        isFullWidth
+        className="BalanceChecker__checkBtn"
+        onClick={onHandleValidation}
+      >
+        Check
+      </Button>
+    </div>
   );
 };
 

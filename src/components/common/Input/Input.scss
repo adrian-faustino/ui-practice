@@ -2,6 +2,8 @@
   &__field {
     outline: none; // @NOTE: ask design for desired behavior when user is focusing input field
 
+    font-weight: 400;
+
     &::placeholder {
       letter-spacing: 1.5px;
       color: #3e342b; // todo constants
