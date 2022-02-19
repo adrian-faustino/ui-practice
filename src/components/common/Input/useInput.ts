@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IKeyStringValMap, IUseInput } from "types/global";
+import { IKeyStringValMap, IUseInput, IInputChangeEvent } from "types/global";
 
 /* This hook handles state manipulation of data related to input fields. Declare this in the parent component of where you intend to use the <Input.tsx> component */
 
@@ -33,11 +33,7 @@ const useInput = (): IUseInput => {
     }));
   };
 
-  const onHandleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
+  const onHandleChange = (e: IInputChangeEvent) => {
     e.persist();
     const { name, value } = e.target;
 
@@ -52,6 +48,7 @@ const useInput = (): IUseInput => {
   return {
     values,
     errors,
+    setValues,
     onSetErrors,
     onHandleChange,
     onHandleClearValues,

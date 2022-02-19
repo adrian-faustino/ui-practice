@@ -2,8 +2,8 @@ import React from "react";
 import classNames from "classnames";
 import Button from "components/common/Button";
 import CrossIcon from "icons/CrossIcon";
-import { IUseInput } from "types/global";
-import { emptyFn } from "constants/global";
+import { IUseInput, IInputChangeEvent, IInputKeyDownEvent } from "types/global";
+// import { emptyFn } from "constants/global";
 
 import "./Input.scss";
 
@@ -29,16 +29,24 @@ const Input: React.FC<IInputProps> = ({
   const _classNames = classNames("Input", className);
 
   // returns function to update state if maxLength requirements are met
-  const onChange = (): ((
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => void) => {
+  const onChange = (e: IInputChangeEvent) => {
     if (maxLength && inputState.values[name]?.length >= maxLength) {
-      return emptyFn;
+      return;
     }
 
-    return inputState.onHandleChange;
+    inputState.onHandleChange(e);
+  };
+
+  const onKeyDown = (e: IInputKeyDownEvent) => {
+    // handling delete here fixes issue where once input length has reached maxLength, early return prevents further state change (in onChange fn)
+    if (e.key === "Backspace") {
+      e.preventDefault(); // stops propagation to onChange handler
+
+      inputState.setValues((state = {}) => ({
+        ...state,
+        [name]: state[name]?.slice(0, -1),
+      }));
+    }
   };
 
   return (
@@ -49,7 +57,8 @@ const Input: React.FC<IInputProps> = ({
         name={name}
         placeholder={placeholder}
         value={inputState.values[name] || ""}
-        onChange={onChange()}
+        onKeyDown={onKeyDown}
+        onChange={onChange}
       />
 
       <Button
