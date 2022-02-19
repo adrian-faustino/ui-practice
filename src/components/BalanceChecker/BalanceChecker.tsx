@@ -21,16 +21,18 @@ const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
   onHandleValidation,
 }) => {
   const hasErrors: boolean = !!inputState.errors[INPUT_NAMES.ccNumber];
+  const hasBalance: boolean = !!balance;
 
   const inputFieldClassName: string = classNames("BalanceChecker__inputField", {
     "BalanceChecker__inputField--hasErrors": hasErrors,
+    "BalanceChecker__inputField--hasBalance": hasBalance,
   });
 
   return (
     <>
       <div className="BalanceChecker">
         <h2 className="BalanceChecker__header">
-          Balance Checker <DwellingIcon />
+          Balance checker <DwellingIcon />
         </h2>
 
         <p>Enter your card number to check its balance.</p>
@@ -51,7 +53,7 @@ const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
 
         {/* Balance */}
         {/* todo format dollar with decimals */}
-        {!!balance && (
+        {hasBalance && (
           <div className="BalanceChecker__balanceMsg">
             Your balance is ${balance}
           </div>

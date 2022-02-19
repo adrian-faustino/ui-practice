@@ -32,11 +32,21 @@
       border-radius: 0 0 10px 10px;
     }
 
+    &--hasBalance,
+    &--hasErrors {
+      > input {
+        border-radius: 0;
+      }
+    }
+
+    &--hasBalance {
+      border-bottom: 1px solid #000000; // todo store in constants
+    }
+
     &--hasErrors {
       > input {
         border-top: 1px solid #ff4d00; // todo store in constants
         border-bottom: 1px solid #ff4d00; // todo store in constants
-        border-radius: 0;
       }
     }
   }
@@ -49,6 +59,7 @@
 
   &__balanceMsg {
     color: #1e7500; // todo store in constants
+    font-weight: 700;
   }
 
   &__errMsg {

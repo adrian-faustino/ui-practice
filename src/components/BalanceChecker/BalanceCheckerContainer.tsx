@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BalanceChecker from "./BalanceChecker";
 import { useInput, IUseInput } from "components/common/Input";
 import {
@@ -54,6 +54,11 @@ const BalanceCheckerContainer = () => {
 
     return setBalance(sum.toString());
   };
+
+  // Effect to clar input field when user enters new value
+  useEffect(() => {
+    setBalance("");
+  }, [inputState.values]);
 
   return (
     <BalanceChecker
