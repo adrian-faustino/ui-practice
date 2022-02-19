@@ -44,6 +44,7 @@ const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
           className={inputFieldClassName}
           name={INPUT_NAMES.ccNumber}
           placeholder="xxxx xxxx xxxx xxxx"
+          maxLength={16 + 3} // account for 3 whitespaces
           inputState={inputState}
         />
 

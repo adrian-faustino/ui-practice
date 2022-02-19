@@ -17,7 +17,8 @@ const BalanceCheckerContainer = () => {
 
   const onHandleValidation = () => {
     const inptName = INPUT_NAMES.ccNumber;
-    const ccNum = values[inptName];
+    // remove spaces between every 4 digits
+    const ccNum = values[inptName]?.replaceAll(" ", "");
 
     const onSetGenericErr = () =>
       inputState.onSetErrors(inptName, INPUT_ERROR_MESSAGES[inptName]);
@@ -55,6 +56,20 @@ const BalanceCheckerContainer = () => {
     return setBalance(sum.toString());
   };
 
+  // adds spaces every 4 digits
+  const withFormattedCreditCardNumber = (): IUseInput => {
+    const str: string = inputState.values[INPUT_NAMES.ccNumber];
+    const spaceStripped: string = str?.replaceAll(" ", "") || "";
+    const spacedOut: string = spaceStripped
+      .split("")
+      .map((d, i) => (i % 4 === 0 ? " " + d : d))
+      .join("")
+      .trim();
+
+    inputState.values[INPUT_NAMES.ccNumber] = spacedOut;
+    return inputState;
+  };
+
   // Effect to clar input field when user enters new value
   useEffect(() => {
     setBalance("");
@@ -63,7 +78,7 @@ const BalanceCheckerContainer = () => {
   return (
     <BalanceChecker
       balance={balance}
-      inputState={inputState}
+      inputState={withFormattedCreditCardNumber()}
       onHandleValidation={onHandleValidation}
     />
   );

@@ -3,6 +3,7 @@ import classNames from "classnames";
 import Button from "components/common/Button";
 import CrossIcon from "icons/CrossIcon";
 import { IUseInput } from "types/global";
+import { emptyFn } from "constants/global";
 
 import "./Input.scss";
 
@@ -12,6 +13,7 @@ interface IInputProps {
   isAutoCompleteOff?: boolean;
   name: string;
   placeholder?: string;
+  maxLength?: number;
   inputState: IUseInput;
   className?: string;
 }
@@ -20,10 +22,24 @@ const Input: React.FC<IInputProps> = ({
   isAutoCompleteOff = false,
   name,
   placeholder = "",
+  maxLength,
   inputState,
   className,
 }) => {
   const _classNames = classNames("Input", className);
+
+  // returns function to update state if maxLength requirements are met
+  const onChange = (): ((
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => void) => {
+    if (maxLength && inputState.values[name]?.length >= maxLength) {
+      return emptyFn;
+    }
+
+    return inputState.onHandleChange;
+  };
 
   return (
     <div className={_classNames}>
@@ -33,7 +49,7 @@ const Input: React.FC<IInputProps> = ({
         name={name}
         placeholder={placeholder}
         value={inputState.values[name] || ""}
-        onChange={inputState.onHandleChange}
+        onChange={onChange()}
       />
 
       <Button
