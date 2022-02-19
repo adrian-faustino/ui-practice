@@ -1,11 +1,15 @@
+@import "../../index.scss";
+
+$cardPadding: 15px;
+
 .BalanceChecker {
   max-width: 345px;
 
   &__card {
-    background: #efe6dd; // todo store in constants
-    border: 1px solid #000000; // todo store in constants
+    background: $dwelling-theme-1;
+    border: 1px solid black;
     border-radius: 10px;
-    padding: 0 15px;
+    padding: 0 $cardPadding;
   }
 
   &__header {
@@ -15,20 +19,21 @@
 
   &__inputField {
     position: relative;
-    left: -15px; // todo calc from parent constant padding
+    // left: calc($cardPadding * -1);
+    left: -#{$cardPadding};
 
     display: flex;
     align-items: center;
-    width: calc(100% + 30px); // todo calc from parent constant padding
+    width: calc(100% + (#{$cardPadding} * 2));
 
     > input {
       width: 100%;
       height: 50px;
       padding: 0 45px 0 15px;
-      font-size: 14px; // todo store in constants
+      font-size: 14px;
 
-      border-top: 1px solid #000000; // todo store in constants
-      border-bottom: none; // todo store in constants
+      border-top: 1px solid black;
+      border-bottom: none;
       border-left: none;
       border-right: none;
       border-radius: 0 0 10px 10px;
@@ -42,13 +47,13 @@
     }
 
     &--hasBalance {
-      border-bottom: 1px solid #000000; // todo store in constants
+      border-bottom: 1px solid black;
     }
 
     &--hasErrors {
       > input {
-        border-top: 1px solid #ff4d00; // todo store in constants
-        border-bottom: 1px solid #ff4d00; // todo store in constants
+        border-top: 1px solid $danger;
+        border-bottom: 1px solid $danger;
       }
     }
   }
@@ -60,17 +65,17 @@
   }
 
   &__balanceMsg {
-    color: #1e7500; // todo store in constants
+    color: $success;
     font-weight: 700;
   }
 
   &__errMsg {
-    color: #ff4d00; // todo store in constants
+    color: $danger;
   }
 
   .BalanceChecker__checkBtn {
     margin-top: 15px;
-    background: #000000; // todo constants
+    background: black;
     height: 50px;
 
     font-size: 16px;

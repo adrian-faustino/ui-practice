@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-// import { emptyFn } from "constants/global"; todo
 import Button from "components/common/Button";
 import CrossIcon from "icons/CrossIcon";
 import { IUseInput } from "types/global";

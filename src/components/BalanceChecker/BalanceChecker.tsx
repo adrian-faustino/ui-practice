@@ -12,7 +12,7 @@ import "./BalanceChecker.scss";
 interface IBalanceCheckerProps {
   balance: string;
   inputState: IUseInput;
-  onHandleValidation: any; // todo any
+  onHandleValidation: () => void;
 }
 
 const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
@@ -27,6 +27,8 @@ const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
     "BalanceChecker__inputField--hasErrors": hasErrors,
     "BalanceChecker__inputField--hasBalance": hasBalance,
   });
+
+  const formattedBalance: string = Number.parseFloat(balance).toFixed(2);
 
   return (
     <div className="BalanceChecker">
@@ -53,10 +55,9 @@ const BalanceChecker: React.FC<IBalanceCheckerProps> = ({
         )}
 
         {/* Balance */}
-        {/* todo format dollar with decimals */}
         {hasBalance && (
           <div className="BalanceChecker__balanceMsg">
-            Your balance is ${balance}
+            Your balance is ${formattedBalance}
           </div>
         )}
       </div>
